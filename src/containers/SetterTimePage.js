@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import setTime from "../action";
-import GetterTimeForPageA from "./GetterTimeForPageA";
+import saveTime from "../action";
+import GetterTimeForMainPage from "./GetterTimeForMainPage";
 
-function SetterTimePageA() {
+function SetterTimePage() {
   const dispatch = useDispatch();
   let time = "";
   useEffect(() => {
     time = new Date().toString();
-    dispatch(setTime(time));
+    dispatch(saveTime(time));
   }, []);
 
   return (
     <>
-      <GetterTimeForPageA />
+      <GetterTimeForMainPage />
     </>
   );
 }
 
-export default SetterTimePageA;
+export default SetterTimePage;

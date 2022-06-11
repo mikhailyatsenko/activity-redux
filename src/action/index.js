@@ -1,5 +1,5 @@
-function setTime(timeOnLoad) {
+function saveTime(timeOnLoad) {
   return { type: "SET_TIME", timeOnLoad };
 }
 
-export default setTime;
+export default saveTime;
