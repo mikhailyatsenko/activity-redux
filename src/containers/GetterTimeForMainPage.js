@@ -3,7 +3,8 @@ import Main from "../components/Main";
 
 function mapStateToProps(state) {
   return {
-    timeOnPage: state.time,
+    startTime: state.startTime,
+    stopTime: state.stopTime,
   };
 }
 

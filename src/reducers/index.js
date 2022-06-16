@@ -1,12 +1,16 @@
 import initialState from "../store/initialState";
 
 function time(state = initialState, action) {
-  console.log(state);
   switch (action.type) {
-    case "SET_TIME":
+    case "SAVE_START_TIME":
       return {
         ...state,
-        time: action.timeOnLoad,
+        startTime: action.startTime,
+      };
+    case "SAVE_STOP_TIME":
+      return {
+        ...state,
+        stopTime: action.stopTime,
       };
     default:
       return state;

@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function PageB(time) {
+function HistoryList(time) {
   return (
     <>
-      <p>Time on Page "B"</p>
+      <p>Time on Page "A"</p>
       <p>{time.timeOnPage}</p>
       <p>
-        <Link to="/a">Page A</Link>
+        <Link to="/b">Page B</Link>
       </p>
       <Link to="/">Back to "Main"</Link>
     </>
   );
 }
 
-export default PageB;
+export default HistoryList;

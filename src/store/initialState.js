@@ -1,4 +1,5 @@
 const initialState = {
-  time: "",
+  startTime: "",
+  stopTime: "",
 };
 export default initialState;

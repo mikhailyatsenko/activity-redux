@@ -1,7 +1,6 @@
 import React from "react";
-import SetterTimePage from "../containers/SetterTimePage";
-import GetterTimeForPageA from "../containers/GetterTimeForPageA";
-import GetterTimeForPageB from "../containers/GetterTimeForPageB";
+import ActivityTracker from "../containers/ActivityTracker";
+import HistoryLoader from "../containers/HistoryLoader";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,9 +9,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SetterTimePage />} />
-          <Route path="/a" element={<GetterTimeForPageA />} />
-          <Route path="/b" element={<GetterTimeForPageB />} />
+          <Route path="/" element={<ActivityTracker />} />
+          <Route path="/history" element={<HistoryLoader />} />
         </Routes>
       </BrowserRouter>
     </>
