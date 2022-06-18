@@ -1,5 +1,2 @@
-const initialState = {
-  startTime: "",
-  stopTime: "",
-};
+const initialState = [];
 export default initialState;

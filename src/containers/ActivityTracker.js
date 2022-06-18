@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import saveStartTime from "../action/saveStartTime";
 import saveStopTime from "../action/saveStopTime";
+import saveNameActivity from "../action/saveNameActivity";
 import GetterTimeForMainPage from "./GetterTimeForMainPage";
 
 function ActivityTracker() {
@@ -37,16 +38,19 @@ function ActivityTracker() {
     dispatch(saveStopTime(stopTime));
   }
 
-  // function saveActivityHandler() {
-  //   dispatch(saveStopTime(stopTime));
-  //   setTimer(0);
-  // }
+  function saveActivityHandler(event) {
+    event.preventDefault();
+    let nameActivity = event.target.activity.value;
+    dispatch(saveNameActivity(nameActivity));
+    setTimer(0);
+  }
 
   return (
     <>
       <GetterTimeForMainPage
         startHandler={startHandler}
         stopHandler={stopHandler}
+        saveActivityHandler={saveActivityHandler}
         timer={timer}
       />
     </>

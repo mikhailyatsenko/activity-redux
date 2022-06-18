@@ -1,6 +1,6 @@
 import React from "react";
 import ActivityTracker from "../containers/ActivityTracker";
-import HistoryLoader from "../containers/HistoryLoader";
+import GetterTimeForHistoryPage from "../containers/GetterTimeForHistoryPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ActivityTracker />} />
-          <Route path="/history" element={<HistoryLoader />} />
+          <Route path="/history" element={<GetterTimeForHistoryPage />} />
         </Routes>
       </BrowserRouter>
     </>
