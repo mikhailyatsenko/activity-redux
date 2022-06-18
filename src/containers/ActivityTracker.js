@@ -52,6 +52,7 @@ function ActivityTracker() {
         stopHandler={stopHandler}
         saveActivityHandler={saveActivityHandler}
         timer={timer}
+        timerOn={timerOn}
       />
     </>
   );

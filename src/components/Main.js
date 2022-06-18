@@ -33,7 +33,11 @@ function Main(props) {
         </Link>
         <div className="py-4">
           {props.startTime && props.timer ? (
-            <p className="font-extralight align-middle">
+            <p
+              className={`font-extralight align-middle ${
+                props.timerOn ? "animate-pulse" : null
+              }`}
+            >
               Activity started at <strong>{props.startTime}</strong>
             </p>
           ) : null}
