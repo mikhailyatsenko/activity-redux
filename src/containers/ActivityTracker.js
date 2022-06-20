@@ -7,19 +7,9 @@ import GetterTimeForMainPage from "./GetterTimeForMainPage";
 
 function ActivityTracker() {
   const dispatch = useDispatch();
-  let startTime = "";
-  let stopTime = "";
-
   const intervalRef = useRef();
-
   const [timer, setTimer] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
-
-  function startHandler() {
-    startTime = new Date().toLocaleTimeString();
-    dispatch(saveStartTime(startTime));
-    setTimerOn(true);
-  }
 
   useEffect(() => {
     if (timerOn) {
@@ -32,14 +22,23 @@ function ActivityTracker() {
     }
   }, [timerOn]);
 
+  function startHandler() {
+    let startTime = "";
+    startTime = new Date().toLocaleTimeString();
+    dispatch(saveStartTime(startTime));
+    setTimerOn(true);
+  }
+
   function stopHandler() {
     setTimerOn(false);
+    let stopTime = "";
     stopTime = new Date().toLocaleTimeString();
     dispatch(saveStopTime(stopTime));
   }
 
   function saveActivityHandler(event) {
     event.preventDefault();
+
     let nameActivity = event.target.activity.value;
     dispatch(saveNameActivity(nameActivity));
     setTimer(0);
