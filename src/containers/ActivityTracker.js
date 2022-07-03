@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import saveStartTime from "../action/saveStartTime";
 import saveStopTime from "../action/saveStopTime";
-import saveNameActivity from "../action/saveNameActivity";
-import GetterTimeForMainPage from "./GetterTimeForMainPage";
+import saveCommentActivity from "../action/saveCommentActivity";
+import GetterDataForMainPage from "./GetterDataForMainPage";
 
 function ActivityTracker() {
   const dispatch = useDispatch();
@@ -36,20 +36,20 @@ function ActivityTracker() {
     dispatch(saveStopTime(stopTime));
   }
 
-  function saveActivityHandler(event) {
+  function saveCommentHandler(event) {
     event.preventDefault();
 
-    let nameActivity = event.target.activity.value;
-    dispatch(saveNameActivity(nameActivity));
+    let commentActivity = event.target.comment.value;
+    dispatch(saveCommentActivity(commentActivity));
     setTimer(0);
   }
 
   return (
     <>
-      <GetterTimeForMainPage
+      <GetterDataForMainPage
         startHandler={startHandler}
         stopHandler={stopHandler}
-        saveActivityHandler={saveActivityHandler}
+        saveCommentHandler={saveCommentHandler}
         timer={timer}
         timerOn={timerOn}
       />
