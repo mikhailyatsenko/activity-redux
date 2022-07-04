@@ -3,6 +3,7 @@ import fetchRandomActivity from "../action/fetchRandomActivity";
 import Main from "../components/Main";
 
 function mapStateToProps(state) {
+  if (state.activity.length) console.log("start:", state.activity.at(-1).startTime, "stop:", state.activity.at(-1).stopTime);
   let activity = state.activity;
 
   let currentStartTime;

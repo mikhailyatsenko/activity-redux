@@ -1,4 +1,6 @@
-function activityDataReducer(state = [], action) {
+const defaultState = [];
+
+function activityDataReducer(state = defaultState, action) {
   switch (action.type) {
     case "LS_TO_STORE":
       return [...state, ...action.localStorageData];
@@ -22,7 +24,7 @@ function activityDataReducer(state = [], action) {
       return newStateWithComment;
 
     case "CLEAR_HISTORY":
-      return [];
+      return defaultState;
 
     default:
       return state;

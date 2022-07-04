@@ -8,7 +8,7 @@ function Main(props) {
         {props.isLoading && (
           <svg
             role="status"
-            class="inline w-8 h-8 mr-2 text-gray-200 animate-spin fill-purple-500"
+            className="inline w-8 h-8 mr-2 text-gray-200 animate-spin fill-purple-500"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ function Main(props) {
           ) : null}
         </div>
       </div>
-      {props.stopTime && props.timer ? (
+      {props.stopTime && props.timer && !props.timerOn ? (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
