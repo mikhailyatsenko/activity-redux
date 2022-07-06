@@ -7,7 +7,7 @@ function LocalStorageAndStoreConnector() {
   const store = useStore();
 
   const storeToLocalStorage = useCallback(() => {
-    if (store.getState().length) {
+    if (store.getState) {
       localStorage.setItem("activityData", JSON.stringify(store.getState()));
     }
   }, [store]);
