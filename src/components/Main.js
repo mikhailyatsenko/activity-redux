@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Main(props) {
-  console.log(props.usePersonalActivity);
   return (
     <section className="height100 flex items-center">
       <div className="container mx-auto">
@@ -43,15 +42,13 @@ function Main(props) {
                 >
                   Do this activity
                 </button>
-                {/* <button onClick={props.doPersonalActivityHandler} className="mx-1 text-purple-600 hover:text-purple-400">
-                  ...or <span className="font-semibold">do personal activity</span>
-                </button> */}
               </div>
             </div>
           </div>
         )}
 
         {props.useFetchedActivity && <h2 className="text-2xl pb-3 leading-6 font-medium text-gray-900">{props.fetchedNameActivity}</h2>}
+
         {props.usePersonalActivity && !props.timer && (
           <h2 className="text-2xl pb-3 leading-6 font-medium text-gray-900">Press "Start activity" button to begin personal activity</h2>
         )}
@@ -61,6 +58,7 @@ function Main(props) {
           <span>{("0" + Math.floor((props.timer / 1000) % 60)).slice(-2)}:</span>
           <span>{("0" + ((props.timer / 10) % 100)).slice(-2)}</span>
         </h1>
+
         <div className="flex justify-center">
           {props.useFetchedActivity !== props.usePersonalActivity ? (
             <button
@@ -112,6 +110,7 @@ function Main(props) {
           ) : null}
         </div>
       </div>
+
       {props.stopTime && props.timer && !props.timerOn ? (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
           <div className="relative top-20 mx-auto p-4 border max-w-xl shadow-lg rounded-md bg-white">
