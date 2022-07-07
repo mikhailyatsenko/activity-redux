@@ -21,6 +21,11 @@ function activity(state = defaultState, action) {
       newStateWithName.at(-1).nameActivity = action.nameActivity;
       return newStateWithName;
 
+    case "REMOVE_ACTIVITY_FROM_HISTORY":
+      let newStateWithoutRemovedActivity = [...state];
+      newStateWithoutRemovedActivity = newStateWithoutRemovedActivity.filter((activity, index) => index !== action.index);
+      return newStateWithoutRemovedActivity;
+
     case "CLEAR_HISTORY":
       return defaultState;
 

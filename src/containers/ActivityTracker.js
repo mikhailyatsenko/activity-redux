@@ -68,6 +68,10 @@ function ActivityTracker() {
     setUsePersonalActivity(true);
   }
 
+  function closeModal(event) {
+    if (!event.target.closest("#modal-content")) setFetchedNameActivity("");
+  }
+
   return (
     <>
       <GetterDataForMainPage
@@ -83,6 +87,7 @@ function ActivityTracker() {
         timer={timer}
         timerOn={timerOn}
         isLoading={isLoading}
+        closeModal={closeModal}
       />
     </>
   );

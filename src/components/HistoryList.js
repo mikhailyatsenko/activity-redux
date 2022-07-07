@@ -8,15 +8,21 @@ function HistoryList(props) {
         <h1 className="text-5xl align-middle">Hisory of your activity:</h1>
 
         <div className="flex justify-center pt-5">
-          <ul className="bg-white rounded-lg text-gray-900">
+          <ul className="bg-white rounded-lg text-gray-900 w-full md:w-[640px]">
             {props.activityData.map((item, index) => (
-              <li key={index} className="px-6 py-2 border-b border-gray-200 w-full">
-                <p>
+              <li key={index} className="px-6 py-2 justify-between border-b border-gray-200 w-full flex items-center hover:bg-purple-50">
+                <div className="basis-1/3 text-xs md:text-base">
                   <strong>"{item.nameActivity}"</strong>
-                </p>
-                <p>
-                  {item.startTime} —{item.stopTime}
-                </p>
+                </div>
+                <div className="basis-1/3 text-xs md:text-base">
+                  {item.startTime} — {item.stopTime}
+                </div>
+                <span
+                  onClick={() => props.removeActivityFromHistory(index)}
+                  className="material-icons basis-1/3 text-gray-700 cursor-pointer hover:text-purple-800 focus:ring-2 focus:ring-purple-300"
+                >
+                  remove_circle
+                </span>
               </li>
             ))}
           </ul>

@@ -26,23 +26,16 @@ function Main(props) {
         )}
 
         {props.fetchedNameActivity && props.useFetchedActivity === props.usePersonalActivity && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
-            <div className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white">
+          <div onClick={props.closeModal} className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
+            <div id="modal-content" className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white">
+              <div
+                onClick={props.fetchRandomActivityHandler}
+                className="mx-auto flex items-center justify-center mb-1 h-12 w-12 rounded-full bg-purple-100 hover:cursor-pointer hover:bg-purple-300"
+              >
+                <span className={`${props.isLoading && "animate-spin text-white"} material-icons text-gray-500`}>autorenew </span>
+              </div>
               <div className="text-center">
-                {/* <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-purple-100">
-                  <svg className="h-6 w-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div> */}
-                <h2 className="text-2xl pb-3 leading-6 font-medium text-gray-900">
-                  {props.fetchedNameActivity}
-                  <span
-                    onClick={props.fetchRandomActivityHandler}
-                    className={`${props.isLoading && "animate-spin"} material-icons hover:cursor-pointer text-gray-500`}
-                  >
-                    autorenew
-                  </span>
-                </h2>
+                <h2 className="text-2xl pb-6 leading-6 font-medium text-gray-900">{props.fetchedNameActivity}</h2>
 
                 <button
                   onClick={props.doFetchedActivityHandler}
@@ -50,9 +43,9 @@ function Main(props) {
                 >
                   Do this activity
                 </button>
-                <button onClick={props.doPersonalActivityHandler} className="mx-1 text-purple-600 hover:text-purple-400">
+                {/* <button onClick={props.doPersonalActivityHandler} className="mx-1 text-purple-600 hover:text-purple-400">
                   ...or <span className="font-semibold">do personal activity</span>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -79,13 +72,13 @@ function Main(props) {
           ) : (
             <div>
               <button
-                onClick={props.fetchRandomActivityHandler}
+                onClick={props.doPersonalActivityHandler}
                 className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium disabled:bg-purple-200"
               >
-                Suggest new activity
+                Do any personal activity
               </button>
-              <button onClick={props.doPersonalActivityHandler} className="block text-purple-600 hover:text-purple-400">
-                ...or <span className="font-semibold">do personal activity</span>
+              <button onClick={props.fetchRandomActivityHandler} className="block text-purple-600 hover:text-purple-400 text-sm mx-auto">
+                ...or <span className="font-semibold">suggest random activity</span>
               </button>
             </div>
           )}
@@ -104,6 +97,7 @@ function Main(props) {
             )}
           </div>
         </div>
+
         <div className="py-4">
           {props.startTime && props.timer ? (
             <p className={`font-extralight align-middle ${props.timerOn ? "animate-pulse" : null}`}>
@@ -120,7 +114,7 @@ function Main(props) {
       </div>
       {props.stopTime && props.timer && !props.timerOn ? (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
-          <div className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white">
+          <div className="relative top-20 mx-auto p-4 border max-w-xl shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
               <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-purple-100">
                 <svg className="h-6 w-6 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
