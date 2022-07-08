@@ -5,6 +5,5 @@
 - mobile-first
 - cross-browser
 
+## How it works:
 ![image](https://github.com/mikhailyatsenko/activity-redux/blob/alt/Activty-tracker.gif)
-Описание:
-https://github.com/mikhailyatsenko/activity-redux/blob/alt/Activty-tracker.gif
