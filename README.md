@@ -1,7 +1,7 @@
 # Stack:
 - react-create-app
-- react-redux
-- tailwind CSS
+- React-redux
+- Tailwind CSS
 - mobile-first
 - cross-browser
 
