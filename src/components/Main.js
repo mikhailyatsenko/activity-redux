@@ -26,7 +26,11 @@ function Main(props) {
 
         {props.fetchedNameActivity && !props.useFetchedActivity && (
           <div onClick={props.closeModal} className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
-            <div id="modal-content" className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white">
+            <div
+              onClick={(event) => event.stopPropagation()}
+              id="modal-content"
+              className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white"
+            >
               <div
                 onClick={props.fetchRandomActivityHandler}
                 className="mx-auto flex items-center justify-center mb-1 h-12 w-12 rounded-full bg-purple-100 hover:cursor-pointer hover:bg-purple-300"

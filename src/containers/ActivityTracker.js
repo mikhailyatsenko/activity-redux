@@ -12,9 +12,8 @@ function ActivityTracker() {
   const [timerOn, setTimerOn] = useState(false);
   const [fetchedNameActivity, setFetchedNameActivity] = useState("");
   const [useFetchedActivity, setUseFetchedActivity] = useState(false);
-  const [usePersonalActivity, setUsePersonalActivity] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  let controller = new AbortController();
+  const [controller] = useState(new AbortController());
 
   useEffect(() => {
     if (timerOn) {
@@ -49,7 +48,6 @@ function ActivityTracker() {
     setTimer(0);
     setFetchedNameActivity("");
     setUseFetchedActivity(false);
-    setUsePersonalActivity(false);
   }
 
   async function fetchRandomActivityHandler() {
@@ -63,9 +61,7 @@ function ActivityTracker() {
       setFetchedNameActivity(responseActivityObj.activity);
     } catch (err) {
       if (err.name === "AbortError") {
-        console.log("Прервано!");
-      } else {
-        throw err;
+        return null;
       }
     }
   }
@@ -74,17 +70,11 @@ function ActivityTracker() {
     setUseFetchedActivity(true);
   }
 
-  function doPersonalActivityHandler() {
-    setUsePersonalActivity(true);
-  }
-
-  function closeModal(event) {
-    if (!event.target.closest("#modal-content")) {
-      if (isLoading) {
-        controller.abort();
-        console.log("abort");
-      }
-      setFetchedNameActivity("");
+  function closeModal() {
+    setFetchedNameActivity("");
+    if (isLoading) {
+      controller.abort();
+      setIsLoading(false);
     }
   }
 
@@ -96,9 +86,7 @@ function ActivityTracker() {
         saveActivityHandler={saveActivityHandler}
         fetchRandomActivityHandler={fetchRandomActivityHandler}
         doFetchedActivityHandler={doFetchedActivityHandler}
-        doPersonalActivityHandler={doPersonalActivityHandler}
         useFetchedActivity={useFetchedActivity}
-        usePersonalActivity={usePersonalActivity}
         fetchedNameActivity={fetchedNameActivity}
         timer={timer}
         timerOn={timerOn}
