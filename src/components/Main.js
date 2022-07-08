@@ -24,7 +24,7 @@ function Main(props) {
           </svg>
         )}
 
-        {props.fetchedNameActivity && props.useFetchedActivity === props.usePersonalActivity && (
+        {props.fetchedNameActivity && !props.useFetchedActivity && (
           <div onClick={props.closeModal} className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
             <div id="modal-content" className="relative top-20 mx-auto p-5 border max-w-xl shadow-lg rounded-md bg-white">
               <div
@@ -49,36 +49,34 @@ function Main(props) {
 
         {props.useFetchedActivity && <h2 className="text-2xl pb-3 leading-6 font-medium text-gray-900">{props.fetchedNameActivity}</h2>}
 
-        {props.usePersonalActivity && !props.timer && (
-          <h2 className="text-2xl pb-3 leading-6 font-medium text-gray-900">Press "Start activity" button to begin personal activity</h2>
-        )}
-
-        <h1 className={`text-6xl py-3 align-middle text-purple-500 ${props.useFetchedActivity === props.usePersonalActivity && "text-gray-300"}`}>
+        <h1 className={`text-6xl py-3 align-middle text-purple-500 ${!props.timer ? "text-gray-300" : null}`}>
           <span>{("0" + Math.floor((props.timer / 60000) % 60)).slice(-2)}:</span>
           <span>{("0" + Math.floor((props.timer / 1000) % 60)).slice(-2)}:</span>
           <span>{("0" + ((props.timer / 10) % 100)).slice(-2)}</span>
         </h1>
 
         <div className="flex justify-center">
-          {props.useFetchedActivity !== props.usePersonalActivity ? (
+          {!props.fetchedNameActivity ? (
+            <div>
+              <button
+                onClick={props.timer ? props.stopHandler : props.startHandler}
+                className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium disabled:bg-purple-200"
+              >
+                {props.timer ? "Stop" : "Start any personal activity"}
+              </button>
+              {!props.timer && (
+                <button onClick={props.fetchRandomActivityHandler} className="block text-purple-600 hover:text-purple-400 text-sm mx-auto">
+                  ...or <span className="font-semibold">suggest random activity</span>
+                </button>
+              )}
+            </div>
+          ) : (
             <button
               onClick={props.timer ? props.stopHandler : props.startHandler}
               className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium disabled:bg-purple-200"
             >
               {props.timer ? "Stop" : "Start activity"}
             </button>
-          ) : (
-            <div>
-              <button
-                onClick={props.doPersonalActivityHandler}
-                className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300 font-medium disabled:bg-purple-200"
-              >
-                Do any personal activity
-              </button>
-              <button onClick={props.fetchRandomActivityHandler} className="block text-purple-600 hover:text-purple-400 text-sm mx-auto">
-                ...or <span className="font-semibold">suggest random activity</span>
-              </button>
-            </div>
           )}
 
           <div>

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import saveStartTime from "../action/saveStartTime";
 import saveStopTime from "../action/saveStopTime";
 import saveNameActivity from "../action/saveNameActivity";
-// import saveFetchedNameActivity from "../action/saveFetchedNameActivity";
 import GetterDataForMainPage from "./GetterDataForMainPage";
 
 function ActivityTracker() {
@@ -15,6 +14,7 @@ function ActivityTracker() {
   const [useFetchedActivity, setUseFetchedActivity] = useState(false);
   const [usePersonalActivity, setUsePersonalActivity] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  let controller = new AbortController();
 
   useEffect(() => {
     if (timerOn) {
@@ -54,10 +54,20 @@ function ActivityTracker() {
 
   async function fetchRandomActivityHandler() {
     setIsLoading(true);
-    let response = await fetch("http://www.boredapi.com/api/activity/");
-    let responseActivityObj = await response.json();
-    setIsLoading(false);
-    setFetchedNameActivity(responseActivityObj.activity);
+    try {
+      let response = await fetch("http://www.boredapi.com/api/activity/", {
+        signal: controller.signal,
+      });
+      let responseActivityObj = await response.json();
+      setIsLoading(false);
+      setFetchedNameActivity(responseActivityObj.activity);
+    } catch (err) {
+      if (err.name === "AbortError") {
+        console.log("Прервано!");
+      } else {
+        throw err;
+      }
+    }
   }
 
   function doFetchedActivityHandler() {
@@ -69,7 +79,13 @@ function ActivityTracker() {
   }
 
   function closeModal(event) {
-    if (!event.target.closest("#modal-content")) setFetchedNameActivity("");
+    if (!event.target.closest("#modal-content")) {
+      if (isLoading) {
+        controller.abort();
+        console.log("abort");
+      }
+      setFetchedNameActivity("");
+    }
   }
 
   return (
