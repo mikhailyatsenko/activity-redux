@@ -68,6 +68,7 @@ function ActivityTracker() {
 
   function doFetchedActivityHandler() {
     setUseFetchedActivity(true);
+    startHandler();
   }
 
   function closeModal() {
