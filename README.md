@@ -1,5 +1,5 @@
 # Stack:
-- react-create-app
+- create-react-app
 - React-redux
 - Tailwind CSS
 - mobile-first
